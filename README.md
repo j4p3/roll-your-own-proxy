@@ -5,7 +5,8 @@ Here's what you need:
 1. An Amazon account
 2. A UNIX command line (open Terminal in Mac or *nix. Windows users, you're out of luck. Go buy a proxy.)
 
-##Set up your remote machine
+Set up your remote machine
+--------------------------
 
 * Go to [http://aws.amazon.com/](http://aws.amazon.com/). Sign up or sign in with your existing Amazon account.
 * Navigate to the "IAM" service. Create a new User called "proxy", and add a Policy to its Permissions with the option `AmazonEC2FullAccess`.
@@ -14,7 +15,8 @@ Here's what you need:
 * Use your new access to AWS to [create an EC2 instance](http://docs.aws.amazon.com/cli/latest/userguide/tutorial-ec2-ubuntu.html), and don't forget to download the key file.
 * Write down your new instance's `instance-id` value.
 
-##Set up controls for your machine
+Set up controls for your machine
+------------------------------
 
 * Open or create your `~/.bash_profile` file.
 * Enter the following code, with your instance id (e.g. 'i-7215db8f') in place of <YOUR_INSTANCE_HERE>:
@@ -29,12 +31,14 @@ alias proxy_run="ssh -v -i ~/.ssh/proxy.pem -N -D 3128 ubuntu@$(aws ec2 describe
 
 * Save the file.
 
-##Tell your browser about your proxy
+Tell your browser about your proxy
+---------------------------------
 
 * Open your browser preferences and edit its connection settings (in Firefox, this is under Advanced > Network > Connection > Settings 
 * Manually configure a proxy with a SOCKS v5 host to `localhost` on the port `3128`.
 
-##Browse through your proxy
+Browse through your proxy
+-------------------------
 
 * In the terminal, enter `proxy_start`. AWS will take a minute or two to boot up your instance.
 * Enter `proxy_run`. You may be asked "Are you sure you want to continue connecting (yes/no)?" Type `yes`.
